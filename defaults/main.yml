@@ -434,7 +434,7 @@ rhel7stig_force_exact_packages: "{{ rhel7stig_disruption_high }}"
 # RHEL-07-010480 and RHEL-07-010490
 # Password protect the boot loader
 
-rhel7stig_bootloader_password_hash: 'grub.pbkdf2.sha512.changethispassword'
+rhel7stig_bootloader_password_hash: 'grub.pbkdf2.sha512.10000.B69753364A00D7CAA1871D92935F375092F6A39978FB10C6439A6A847C4BACE5DA03AB0BD5368711FF2FFC08F618CF9BE2BC69E253B74F227072F6A7C893DFF5.9E70E78108A15169C366810E829A8974BF937F58BBA482756F1211168CD58AA31001EF73A4E36B4F27C9CBCA81A99B20406766B7A91F61C65F525E2D84EBC79C'
 rhel7stig_boot_superuser: root
 
 # RHEL-07-021700 set the value for correctly configured grub bootloader sequence

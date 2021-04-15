@@ -27,17 +27,20 @@ rhel7stig_regexp_quoted_params: ^({{ rhel7stig_re_qp_key }})({{ rhel7stig_re_qp_
         rhel7stig_re_qp_param }}?)({{ rhel7stig_re_qp_other_params }})({{ rhel7stig_re_qp_key_end }})
 rhel7stig_replace_quoted_params: \1\2{{ rhel7stig_re_qp_insert | ternary('', ' ') }}{{ param }}={{
         value }}{{ rhel7stig_re_qp_insert | ternary(' ', '') }}\4\5
-
+# ' help the editor syntax highlighter out
 # none of these regexes create capture groups
 rhel7stig_re_qp_key: (?:\s*{{ key }}=")
 rhel7stig_re_qp_param: (?:{{ rhel7stig_re_qp_insert | ternary('', ' ?') }}{{
         rhel7stig_re_qp_param_start }}{{ param }}=.*?{{
         rhel7stig_re_qp_param_end }}{{ rhel7stig_re_qp_insert | ternary(' ?', '') }})
+# ' help the editor syntax highlighter out
 rhel7stig_re_qp_other_params: (?:(?!{{ rhel7stig_re_qp_param }}.*).)*{{
         rhel7stig_re_qp_insert | ternary('?', '') }}
 rhel7stig_re_qp_param_start: (?<=[" ])
+# " help the editor syntax highlighter out
 rhel7stig_re_qp_param_end: (?=[" ])
+# " help the editor syntax highlighter out
 rhel7stig_re_qp_key_end: (?:" *)
-
+# " help the editor syntax highlighter out
 # insert the parameter at the beginning or append to the end, default append
 rhel7stig_re_qp_insert: "{{ insert | default(not (append | default(true))) }}"
