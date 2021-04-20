@@ -390,9 +390,9 @@ rhel7stig_time_service_configs:
               line: maxpoll 10
 
 # The firewall to be used
-rhel7stig_firewall_service: firewalld
+rhel7stig_firewall_service: iptables
 # The toggle to start the firewall service. Set to true the role will start the service for you where needed
-rhel7stig_start_firewall_service: true
+rhel7stig_start_firewall_service: false
 
 # RHEL-07-031010
 rhel7stig_system_is_log_aggregator: false
@@ -445,7 +445,7 @@ rhel_07_040200_cabundle_path: etc/pki/tls/certs/ca-bundle.crt
 
 # AIDE settings
 # Set to false for fire and forget mode
-rhel7stig_wait_for_aide_init: true
+rhel7stig_wait_for_aide_init: false
 rhel7stig_aide_handler: "{{ (rhel7stig_wait_for_aide_init) | ternary('init aide and wait','init aide') }}"
 
 # Set to false to not overwrite an existing AIDE DB
