@@ -379,10 +379,9 @@ rhel7stig_time_service_configs:
     chronyd:
         conf: /etc/chrony.conf
         block: |
-          server 0.rhel.pool.ntp.org iburst maxpoll 10
-          server 1.rhel.pool.ntp.org iburst maxpoll 10
-          server 2.rhel.pool.ntp.org iburst maxpoll 10
-          server 3.rhel.pool.ntp.org iburst maxpoll 10
+          server ntp1.gatech.edu maxpoll 10 iburst
+          server ntp2.gatech.edu maxpoll 10 iburst
+          server ntp3.gatech.edu maxpoll 10 iburst
     ntpd:
         conf: /etc/ntp.conf
         lines:
@@ -392,7 +391,7 @@ rhel7stig_time_service_configs:
 # The firewall to be used
 rhel7stig_firewall_service: iptables
 # The toggle to start the firewall service. Set to true the role will start the service for you where needed
-rhel7stig_start_firewall_service: false
+rhel7stig_start_firewall_service: true
 
 # RHEL-07-031010
 rhel7stig_system_is_log_aggregator: false
@@ -519,7 +518,7 @@ rhel7stig_password_complexity:
     minclass: 4
     maxrepeat: 3
     maxclassrepeat: 4
-    minlen: 15
+    minlen: 12
 
 # RHEL-07-040160
 # Session timeout setting file (TMOUT setting can be set in multiple files)
@@ -663,8 +662,8 @@ rhel7stig_nfs_mounts_query: "[?starts_with(fstype, 'nfs')].mount"
 
 # DNS Servers to configure, you need two to conform to STIG standards
 rhel_07_040600_dns_servers:
-    - 9.9.9.9
-    - 149.112.112.112
+    - 10.41.31.110
+    - 10.41.1.46
 
 # The GID start point for interactive (non-system) users
 rhel7stig_int_gid: 1000
