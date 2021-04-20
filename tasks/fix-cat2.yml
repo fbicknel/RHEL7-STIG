@@ -1,4 +1,9 @@
 ---
+- name: Disable SELinux
+  ansible.posix.selinux:
+    state: permissive
+    policy: targeted
+
 ### RHEL-07-010030 | RHEL-07-010040 combined as related tasks in regards to a config file no other content will be in.
 - name: "MEDIUM | RHEL-07-010030 | RHEL-07-010040 | PATCH | The Red Hat Enterprise Linux operating system must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a graphical user logon."
   copy:
@@ -898,19 +903,6 @@
   - rhel_07_020111
   tags:
   - RHEL-07-020111
-
-- name: "MEDIUM | RHEL-07-020210 | PATCH | The Red Hat Enterprise Linux operating system must enable SELinux.|
-         MEDIUM | RHEL-07-020220 | PATCH | The Red Hat Enterprise Linux operating system must enable SELinux targeted policy."
-  selinux:
-    state: enforcing
-    policy: targeted
-  check_mode: "{{ ansible_check_mode or rhel7stig_system_is_chroot }}"
-  when:
-  - rhel_07_020210
-  - not rhel7stig_system_is_container
-  tags:
-  - RHEL-07-020210
-  - selinux
 
 
 - name: "MEDIUM | RHEL-07-020240 | PATCH | The Red Hat Enterprise Linux operating system must define default permissions for all authenticated users in such a way that the user can only read and modify their own files."
@@ -3414,3 +3406,17 @@
   tags:
   - RHEL-07-910055
   - logs
+
+- name: "MEDIUM | RHEL-07-020210 | PATCH | The Red Hat Enterprise Linux operating system must enable SELinux.|
+         MEDIUM | RHEL-07-020220 | PATCH | The Red Hat Enterprise Linux operating system must enable SELinux targeted policy."
+  selinux:
+    state: enforcing
+    policy: targeted
+  check_mode: "{{ ansible_check_mode or rhel7stig_system_is_chroot }}"
+  when:
+  - rhel_07_020210
+  - not rhel7stig_system_is_container
+  tags:
+  - RHEL-07-020210
+  - selinux
+

@@ -1,4 +1,9 @@
 ---
+- name: Disable SELinux
+  ansible.posix.selinux:
+    state: permissive
+    policy: targeted
+
 - name: "HIGH | RHEL-07-010010 | The Red Hat Enterprise Linux operating system must be configured so that the file permissions, ownership, and group membership of system files and commands match the vendor values."
   block:
   - name: "HIGH | RHEL-07-010010 | AUDIT | The Red Hat Enterprise Linux operating system must be configured so that the file permissions, ownership, and group membership of system files and commands match the vendor values."
